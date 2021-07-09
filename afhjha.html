@@ -1,0 +1,111 @@
+<a href="javascript:make()">make</a>
+<a href="javascript:join()">join</a>
+<a href="javascript:SendData()">send</a>
+
+
+<script> var para = null
+var ID = []
+var server = null
+var Uname = prompt('username')
+function PushID(elm) {
+    ID.push(elm)
+}
+
+
+function Write(TXT) {
+para = document.createElement("P");               // Create a <p> element
+para.innerText = TXT;               // Insert text
+document.body.appendChild(para);                      // Append <p> to <body>
+    
+}
+
+
+
+
+
+
+
+
+
+
+function CreateServer(Sname) {
+    
+    const bc = new BroadcastChannel(Sname);
+CreateID(Sname)
+alert('server ID = ' + Sname)
+JoinServer(Sname)
+
+}
+
+
+
+function JoinServer(ServerName) {
+    const bc = new BroadcastChannel(ServerName);
+server = ServerName
+bc.onmessage = function(ev) { Write(`message event received! '${ev.data}'`); };
+
+}
+    
+    
+    
+    function SendData() {
+            const bc = new BroadcastChannel(server);
+
+        var ans = prompt('send message')
+        bc.postMessage(Uname + ': ' + ans);
+    }
+    
+    function CreateID(name) {
+    PushID(name)
+getRandomInt(101)
+getRandomInt(101)
+getRandomInt(101)
+getRandomInt(101)
+getRandomInt(101)
+getRandomInt(101)
+getRandomInt(101)
+
+
+console.log(ID)
+}
+
+
+
+
+function getRandomInt(max) {
+   PushID(Math.floor(Math.random() * max))
+}
+
+
+document.addEventListener("keyup", function(event) {
+    if (event.key === '!') {
+      make
+    }
+});
+
+document.addEventListener("keyup", function(event) {
+    if (event.key === '@') {
+     join()
+    }
+});
+
+document.addEventListener("keyup", function(event) {
+    if (event.key === '#') {
+       SendData()
+    }
+});
+  
+  function make() {_
+  var ans2 = prompt('server name')
+        CreateServer(ans2)
+                  }
+  
+  
+  function join() {
+     var ans2 = prompt('server ID')
+      JoinServer(ans2)
+    
+  }
+  
+  
+</script>
